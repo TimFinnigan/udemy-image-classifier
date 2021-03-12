@@ -35,11 +35,17 @@ function addDomElements(images) {
 	}
 }
 
+function getPredictions() {
+	console.log('button working');
+}
+
 // Main thread
 init().then(() => {
 	document.getElementById('loading-message').style.display = 'none';
 
 	loadFiles().then((images) => {
 		addDomElements(images);
+		document.getElementById('get-predictions-button').style.display =
+			'block';
 	});
 });
