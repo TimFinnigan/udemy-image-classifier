@@ -17,12 +17,29 @@ function loadFiles() {
 		});
 }
 
+// Create elements for containing each image and predictions
+function addDomElements(images) {
+	for (let i = 0; i < images.length; i++) {
+		let row = document.createElement('div');
+		row.setAttribute('class', 'row');
+
+		let img = document.createElement('img');
+		img.setAttribute('src', 'unsorted/' + images[i]);
+
+		let predictions = document.createElement('div');
+
+		row.appendChild(img);
+		row.appendChild(predictions);
+
+		document.getElementById('main').appendChild(row);
+	}
+}
+
 // Main thread
 init().then(() => {
 	document.getElementById('loading-message').style.display = 'none';
 
 	loadFiles().then((images) => {
-		// addDomElements(images);
-		console.log(images);
+		addDomElements(images);
 	});
 });
