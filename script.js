@@ -1,5 +1,7 @@
 let model;
 
+let imageFilePaths = [];
+
 // Load model
 async function init() {
 	const modelURL = './model/model.json';
@@ -24,9 +26,11 @@ function addDomElements(images) {
 		row.setAttribute('class', 'row');
 
 		let img = document.createElement('img');
+		img.setAttribute('id', 'image-' + i);
 		img.setAttribute('src', 'unsorted/' + images[i]);
 
 		let predictions = document.createElement('div');
+		predictions.setAttribute('id', 'prediction-' + i);
 
 		row.appendChild(img);
 		row.appendChild(predictions);
@@ -35,8 +39,18 @@ function addDomElements(images) {
 	}
 }
 
+function predict(num) {
+	let img = document.getElementById('image-' + num);
+	let predictions = document.getElementById('prediction-' + num);
+	console.log(img);
+	console.log(predictions);
+}
+
 function getPredictions() {
-	console.log('button working');
+	console.log(imageFilePaths);
+	for (let i = 0; i < imageFilePaths.length; i++) {
+		predict(i);
+	}
 }
 
 // Main thread
@@ -44,6 +58,7 @@ init().then(() => {
 	document.getElementById('loading-message').style.display = 'none';
 
 	loadFiles().then((images) => {
+		imageFilePaths = images;
 		addDomElements(images);
 		document.getElementById('get-predictions-button').style.display =
 			'block';
