@@ -39,15 +39,16 @@ function addDomElements(images) {
 	}
 }
 
-function predict(num) {
+async function predict(num) {
 	let img = document.getElementById('image-' + num);
 	let predictions = document.getElementById('prediction-' + num);
-	console.log(img);
-	console.log(predictions);
+
+	const prediction = await model.predict(img);
+
+	console.log(prediction);
 }
 
 function getPredictions() {
-	console.log(imageFilePaths);
 	for (let i = 0; i < imageFilePaths.length; i++) {
 		predict(i);
 	}
