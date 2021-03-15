@@ -1,0 +1,27 @@
+.row {
+	display: flex;
+	align-items: center;
+}
+
+.row img {
+	max-width: 600px;
+	max-height: 400px;
+	margin: 20px;
+}
+
+
+button {
+	background-color: #4caf50;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#download-data-button {
+	background-color:steelblue;
+}
