@@ -73,6 +73,20 @@ function getPredictions() {
 	for (let i = 0; i < imageFilePaths.length; i++) {
 		predict(i);
 	}
+
+	document.getElementById('get-predictions-button').style.display = 'none';
+	document.getElementById('download-data-button').style.display = 'block';
+}
+
+function downloadData() {
+	let dataStr =
+		'data:text/json;charset=utf-8,' +
+		encodeURIComponent(JSON.stringify(imageMap));
+
+	let dlAnchorElem = document.createElement('a');
+	dlAnchorElem.setAttribute('href', dataStr);
+	dlAnchorElem.setAttribute('download', 'sorted.json');
+	dlAnchorElem.click();
 }
 
 // Main thread
