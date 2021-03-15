@@ -45,6 +45,16 @@ async function predict(num) {
 
 	const prediction = await model.predict(img);
 
+	for (let i = 0; i < prediction.length; i++) {
+		let predictionText =
+			prediction[i].className +
+			': ' +
+			prediction[i].probability.toFixed(5);
+
+		predictions.appendChild(document.createElement('div'));
+		predictions.childNodes[i].innerHTML = predictionText;
+	}
+
 	console.log(prediction);
 }
 
