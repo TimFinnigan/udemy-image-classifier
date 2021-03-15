@@ -2,6 +2,8 @@ let model;
 
 let imageFilePaths = [];
 
+let imageMap = {};
+
 // Load model
 async function init() {
 	const modelURL = './model/model.json';
@@ -44,6 +46,9 @@ async function predict(num) {
 	let predictions = document.getElementById('prediction-' + num);
 
 	const prediction = await model.predict(img);
+	const CONFIDENCE_SCORE = 0.7;
+
+	let dir = 'other';
 
 	for (let i = 0; i < prediction.length; i++) {
 		let predictionText =
@@ -53,7 +58,13 @@ async function predict(num) {
 
 		predictions.appendChild(document.createElement('div'));
 		predictions.childNodes[i].innerHTML = predictionText;
+
+		if (prediction[i].probability > CONFIDENCE_SCORE) {
+			dir = prediction[i].className.toLowerCase();
+		}
 	}
+
+	imageMap[imageFilePaths[num]] = dir;
 
 	console.log(prediction);
 }
